@@ -141,7 +141,7 @@ class _BookFinderState extends State<BookFinder> {
                       child: Row(
                         children: [
                           Container(
-                            // Image Container
+                            // BookCover Container
                             width: 200,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
@@ -151,6 +151,7 @@ class _BookFinderState extends State<BookFinder> {
                                   fit: BoxFit.cover),
                             ),
                           ),
+                          //
                           Flexible(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -160,8 +161,9 @@ class _BookFinderState extends State<BookFinder> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text("The Roman and the Teuton"),
-                                  const Text("Author: Catherine Carswell"),
-                                  const Text("Year published: 2000"),
+                                  const Text(
+                                      "Author: Catherine Carswell (2020)"),
+                                  const Text("Category: Novel"),
                                   ElevatedButton(
                                       onPressed: () {},
                                       child: const Text("View Details")),
@@ -172,6 +174,21 @@ class _BookFinderState extends State<BookFinder> {
                         ],
                       ),
                     ),
+                    // First recommdended book ends
+                    recommededBookBox(recommendedBooks[0]),
+                    recommededBookBox(recommendedBooks[1]),
+                    recommededBookBox(recommendedBooks[2]),
+                    recommededBookBox(recommendedBooks[3]),
+                    recommededBookBox(recommendedBooks[5]),
+                    recommededBookBox(recommendedBooks[4]),
+                    recommededBookBox(recommendedBooks[6]),
+                    recommededBookBox(recommendedBooks[7]),
+                    recommededBookBox(recommendedBooks[8]),
+                    recommededBookBox(recommendedBooks[9]),
+                    recommededBookBox(recommendedBooks[10]),
+                    recommededBookBox(recommendedBooks[11]),
+                    recommededBookBox(recommendedBooks[12]),
+                    recommededBookBox(recommendedBooks[13]),
                   ],
                 ),
               )
@@ -200,6 +217,7 @@ class _BookFinderState extends State<BookFinder> {
   }
 }
 
+// Methods below
 // Popular Books Box method
 Widget popularBookBox(Book popularBooks) {
   debugPrint("image url: ${popularBooks.bookCover}.jpg");
@@ -261,80 +279,208 @@ Widget newBookBox(Book newBooks) {
   );
 }
 
+// Recommended Book Box
+Widget recommededBookBox(RecommendedBook recommendedBooks) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+    child: SizedBox(
+      width: double.infinity,
+      height: 200,
+      child: Row(
+        children: [
+          Container(
+            // Image Container
+            width: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(
+                  image: NetworkImage(recommendedBooks.bookCover),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(recommendedBooks.bookTitle,
+                      style: const TextStyle(fontSize: 14.0)),
+                  Text(
+                      "Author(s): ${recommendedBooks.author} (${recommendedBooks.yearPublished})"),
+                  Text("Category: ${recommendedBooks.category}"),
+                  Flexible(
+                      child: Text(recommendedBooks.description,
+                          style: const TextStyle(fontStyle: FontStyle.italic),
+                          overflow: TextOverflow.ellipsis)),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: TextButton(
+                              onPressed: () {},
+                              child: const Text("View Details")),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                                "Get on ${recommendedBooks.sourceLibrary}")),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+// RecommendedBook List
+// Didn't work
+// So I'm using the recommemdedBooksBox for now
+List<Widget> recommededBooksList(List<dynamic> recommendedBooks) {
+  List<Widget> recommendedList = [];
+  for (var book in recommendedBooks) {
+    recommendedList.add(Padding(
+      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+      child: SizedBox(
+        width: double.infinity,
+        height: 200,
+        child: Row(
+          children: [
+            Container(
+              // Image Container
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: DecorationImage(
+                    image: NetworkImage(book.bookCover), fit: BoxFit.cover),
+              ),
+            ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(book.bookTitle,
+                        style: const TextStyle(fontSize: 14.0)),
+                    Text("Author(s): ${book.author} (${book.yearPublished})"),
+                    Text("Category: ${book.category}"),
+                    Flexible(
+                        child: Text(book.description,
+                            style: const TextStyle(fontStyle: FontStyle.italic),
+                            overflow: TextOverflow.ellipsis)),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: TextButton(
+                                onPressed: () {},
+                                child: const Text("View Details")),
+                          ),
+                          ElevatedButton(
+                              onPressed: () {},
+                              child: Text("Get book at ${book.sourceLibrary}")),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    ));
+  }
+  return recommendedList;
+}
+
+
 
 // // Initial Popular Book Container Design
 
-            // Second Column item
-            // SizedBox(
-            //   width: double.infinity,
-            //   child: ListView(
-            //     scrollDirection: Axis.horizontal,
-            //     children: [
-            //       // First Pop Book
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 15.0),
-            //         child: Container(
-            //           width: 150,
-            //           height: 200,
-            //           decoration: BoxDecoration(
-            //               image: const DecorationImage(
-            //                   image: AssetImage("assets/images/pexels-5.jpg"),
-            //                   fit: BoxFit.cover),
-            //               borderRadius: BorderRadius.circular(10)),
-            //         ),
-            //       ),
-            //       // Second Popular Book
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 15.0),
-            //         child: Container(
-            //           width: 150,
-            //           height: 200,
-            //           decoration: BoxDecoration(
-            //               image: const DecorationImage(
-            //                   image: AssetImage("assets/images/pexels-4.jpg"),
-            //                   fit: BoxFit.cover),
-            //               borderRadius: BorderRadius.circular(10)),
-            //         ),
-            //       ),
-            //       // Third Popular Book
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 15.0),
-            //         child: Container(
-            //           width: 150,
-            //           height: 200,
-            //           decoration: BoxDecoration(
-            //               image: const DecorationImage(
-            //                   image: AssetImage("assets/images/pexels-3.jpg"),
-            //                   fit: BoxFit.cover),
-            //               borderRadius: BorderRadius.circular(10)),
-            //         ),
-            //       ),
-            //       // Fourth Popular Book
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 15.0),
-            //         child: Container(
-            //           width: 150,
-            //           height: 200,
-            //           decoration: BoxDecoration(
-            //               image: const DecorationImage(
-            //                   image: AssetImage("assets/images/pexels-2.jpg"),
-            //                   fit: BoxFit.cover),
-            //               borderRadius: BorderRadius.circular(10)),
-            //         ),
-            //       ),
-            //       // Last Popular Book
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 15.0),
-            //         child: Container(
-            //           width: 150,
-            //           height: 200,
-            //           decoration: BoxDecoration(
-            //               image: const DecorationImage(
-            //                   image: AssetImage("assets/images/pexels-3.jpg"),
-            //                   fit: BoxFit.cover),
-            //               borderRadius: BorderRadius.circular(10)),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+// Second Column item
+// SizedBox(
+//   width: double.infinity,
+//   child: ListView(
+//     scrollDirection: Axis.horizontal,
+//     children: [
+//       // First Pop Book
+//       Padding(
+//         padding: const EdgeInsets.only(right: 15.0),
+//         child: Container(
+//           width: 150,
+//           height: 200,
+//           decoration: BoxDecoration(
+//               image: const DecorationImage(
+//                   image: AssetImage("assets/images/pexels-5.jpg"),
+//                   fit: BoxFit.cover),
+//               borderRadius: BorderRadius.circular(10)),
+//         ),
+//       ),
+//       // Second Popular Book
+//       Padding(
+//         padding: const EdgeInsets.only(right: 15.0),
+//         child: Container(
+//           width: 150,
+//           height: 200,
+//           decoration: BoxDecoration(
+//               image: const DecorationImage(
+//                   image: AssetImage("assets/images/pexels-4.jpg"),
+//                   fit: BoxFit.cover),
+//               borderRadius: BorderRadius.circular(10)),
+//         ),
+//       ),
+//       // Third Popular Book
+//       Padding(
+//         padding: const EdgeInsets.only(right: 15.0),
+//         child: Container(
+//           width: 150,
+//           height: 200,
+//           decoration: BoxDecoration(
+//               image: const DecorationImage(
+//                   image: AssetImage("assets/images/pexels-3.jpg"),
+//                   fit: BoxFit.cover),
+//               borderRadius: BorderRadius.circular(10)),
+//         ),
+//       ),
+//       // Fourth Popular Book
+//       Padding(
+//         padding: const EdgeInsets.only(right: 15.0),
+//         child: Container(
+//           width: 150,
+//           height: 200,
+//           decoration: BoxDecoration(
+//               image: const DecorationImage(
+//                   image: AssetImage("assets/images/pexels-2.jpg"),
+//                   fit: BoxFit.cover),
+//               borderRadius: BorderRadius.circular(10)),
+//         ),
+//       ),
+//       // Last Popular Book
+//       Padding(
+//         padding: const EdgeInsets.only(right: 15.0),
+//         child: Container(
+//           width: 150,
+//           height: 200,
+//           decoration: BoxDecoration(
+//               image: const DecorationImage(
+//                   image: AssetImage("assets/images/pexels-3.jpg"),
+//                   fit: BoxFit.cover),
+//               borderRadius: BorderRadius.circular(10)),
+//         ),
+//       ),
+//     ],
+//   ),
+// ),
