@@ -1,12 +1,11 @@
 import 'package:bookfinder/ui/popular_now.dart';
-import 'package:bookfinder/ui/search_page.dart';
 import 'package:flutter/material.dart';
 import 'ui/bookfinder.dart';
 
 void main() {
   runApp(MaterialApp(
     title: "SBG EBook Finder",
-    home: const SearchScreen(),
+    home: const BookFinder(),
     theme: ThemeData(
         fontFamily: "Montserrat",
         // primarySwatch: Colors.red,
