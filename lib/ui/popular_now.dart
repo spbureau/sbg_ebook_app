@@ -18,3 +18,22 @@ class _PopularNowScreenState extends State<PopularNowScreen> {
     );
   }
 }
+
+class AllRecommended extends StatefulWidget {
+  const AllRecommended({super.key});
+
+  @override
+  State<AllRecommended> createState() => _AllRecommendedState();
+}
+
+class _AllRecommendedState extends State<AllRecommended> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("All Recommended"),
+        elevation: 0,
+      ),
+    );
+  }
+}

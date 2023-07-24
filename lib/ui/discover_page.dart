@@ -179,6 +179,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       itemBuilder: ((context, index) {
                         // final book = myBooks[index];
                         debugPrint("ListTile now and again");
+                        debugPrint(finalBooks[index].thumbnailLink);
+                        debugPrint(finalBooks[index].title);
+                        debugPrint(finalBooks[index].author);
                         return Container(
                           decoration: const BoxDecoration(
                             shape: BoxShape.rectangle,
@@ -205,7 +208,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       itemCount: recommendedBooks.length,
                       itemBuilder: ((context, index) {
                         // final book = myBooks[index];
-                        debugPrint("ListTile now and again");
                         return Container(
                           decoration: const BoxDecoration(
                             shape: BoxShape.rectangle,

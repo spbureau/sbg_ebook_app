@@ -17,7 +17,8 @@ void main() {
     // initialRoute: '/',
     routes: {
       '/home': (context) => const BookFinder(),
-      'popularNowScreen': (context) => const PopularNowScreen(),
+      '/popularNowScreen': (context) => const PopularNowScreen(),
+      '/AllRecommendedScreen': (context) => const AllRecommended()
     },
     debugShowCheckedModeBanner: false,
   ));
