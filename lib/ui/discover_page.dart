@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bookfinder/ui/books.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,6 +9,7 @@ class GoogleBook {
   String author;
   String description;
   String thumbnailLink;
+  // String accessUrl;
 
   GoogleBook(this.title, this.author, this.description, this.thumbnailLink);
 }
@@ -36,7 +38,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     if (response.statusCode == 200) {
       final searchResult = jsonDecode(response.body);
       debugPrint(response.body);
-      // myBooks = searchResult['items'].fromM
       // debugPrint(response as String?);
       setState(() {
         debugPrint("Got some response!");
@@ -58,13 +59,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     for (var book in searchResult) {
       debugPrint("About parsing them to GoogleBooks and myBooks");
 
-      // parsedBooks.add(GoogleBook(
-      //   book['item']['volumeInfo']
-      //       ['title'], // parsing the responseData as argument to the book
-      //   book['item']['volumeInfo']['authors'][0],
-      //   book['item']['volumeInfo']['description'] ?? "No Description avalable",
-      //   book['item']['volumeInfo']['imageLinks']['thumbnail'],
-      // ));
+      parsedBooks.add(GoogleBook(
+        book['item']['volumeInfo']
+            ['title'], // parsing the responseData as argument to the book
+        book['item']['volumeInfo']['authors'][0],
+        book['item']['volumeInfo']['description'] ?? "No Description avalable",
+        book['item']['volumeInfo']['imageLinks']['thumbnail'],
+      ));
+
+      // ##
       var volumeInfo = book['volumeInfo'];
       String title = volumeInfo['title'] ?? "No title";
       String author = (volumeInfo['authors'] as List<dynamic>).isNotEmpty
@@ -118,19 +121,22 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                          prefixIcon: const Icon(Icons.search),
-                          hintText: "Search by title, author or category",
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                searchTermController.clear();
-                              },
-                              icon: const Icon(Icons.clear)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                            prefixIcon: const Icon(Icons.search),
+                            hintText: "Search by title, author or category",
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  searchTermController.clear();
+                                },
+                                icon: const Icon(Icons.clear)),
+                          ),
+                          controller: searchTermController,
                         ),
-                        controller: searchTermController,
                       ),
                     ),
                     Padding(
@@ -145,8 +151,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ), // Search Field Row Ends
                 // Search Categories
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Search by Category"),
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                    "Search by Category",
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
                 SingleChildScrollView(
                   // Search categories
@@ -166,7 +175,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemCount: myBooks.length,
+                      itemCount: finalBooks.length,
                       itemBuilder: ((context, index) {
                         // final book = myBooks[index];
                         debugPrint("ListTile now and again");
@@ -175,10 +184,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             shape: BoxShape.rectangle,
                           ),
                           child: ListTile(
-                            // leading:
-                            // Image.network(myBooks[index].thumbnailLink),
-                            title: Text(myBooks[index].title),
-                            subtitle: Text(myBooks[index].author),
+                            leading:
+                                Image.network(finalBooks[index].thumbnailLink),
+                            title: Text(finalBooks[index].title),
+                            subtitle: Text(finalBooks[index].author),
                             onTap: () {},
                           ),
                         );
@@ -190,6 +199,37 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     style: const TextStyle(color: Colors.red),
                   ),
                 ),
+                const Text("Others", style: TextStyle(fontSize: 18)),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: recommendedBooks.length,
+                      itemBuilder: ((context, index) {
+                        // final book = myBooks[index];
+                        debugPrint("ListTile now and again");
+                        return Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: ListTile(
+                            leading: Image.network(
+                                recommendedBooks[index].bookCover),
+                            title: Text(recommendedBooks[index].bookTitle),
+                            subtitle: Text(recommendedBooks[index].author),
+                            trailing: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.more_vert_outlined),
+                            ),
+                            onTap: () {},
+                          ),
+                        );
+                      })),
+                ),
+                Container(
+                  color: Colors.grey[200],
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(bottom: 15.0, top: 20),
+                  child: const Center(child: Text("...End...")),
+                )
               ],
             ),
           ),

@@ -10,8 +10,21 @@ class LibraryScreen extends StatefulWidget {
 class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Library"),
-    );
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                  width: double.infinity,
+                  height: 200,
+                  child: Image.asset("assets/images/pexels-5.jpg")),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text("Library"),
+              ),
+            ],
+          ),
+        ));
   }
 }

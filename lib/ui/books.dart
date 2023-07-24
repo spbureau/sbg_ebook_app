@@ -13,26 +13,40 @@ class Book {
 
 List<Book> popularBooks = [
   Book("Court of Mist and Fury", " Sarah J. Maas", "2014", "Fiction",
-      "pexels-7"),
+      "https://images.thalia.media/00/-/3b61c0fac5e4434180305644aca2014e/a-court-of-mist-and-fury-taschenbuch-sarah-j-maas-englisch.jpeg"),
   Book("Harry Potter und der Feuerkelch", "J. K. Rowling", "1999", "Fiction",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCckcL8H3dQOqDC0rph3LbW0W-4Ey6MEAiKw&usqp=CAU"),
-  Book("The Gruffalo", "Julia Donaldson", "1999", "Fiction", "pexels-9"),
-  Book("The Wrong Wife", "Carolyn McSparren", "2000", "Romance", "pexels-4"),
-  Book("A kingdom of dreams", "Judith McNaught", "1989", "Romance", "pexels-3"),
-  Book("The Seven Husbands of Evelyn Hugo", "Taylor Jenkins Reid", "2017",
-      "Fiction", "pexels-2"),
-  Book("The Shining", "Stephen King", "1977", "Fiction", "pexels-1")
+  Book("The Gruffalo", "Julia Donaldson", "1999", "Fiction",
+      "https://pictures.abebooks.com/inventory/md/md31497786270.jpg"),
+  Book("The Wrong Wife", "Carolyn McSparren", "2000", "Romance",
+      "https://m.media-amazon.com/images/I/51U3VyVA0ML._SY346_.jpg"),
+  Book("A kingdom of dreams", "Judith McNaught", "1989", "Romance",
+      "https://i.ebayimg.com/images/g/a7sAAOSweyRkPCdV/s-l500.jpg"),
+  Book(
+      "The Seven Husbands of Evelyn Hugo",
+      "Taylor Jenkins Reid",
+      "2017",
+      "Fiction",
+      "https://m.media-amazon.com/images/I/51RUJq8gupL._SY264_BO1,204,203,200_QL40_ML2_.jpg"),
+  Book("The Shining", "Stephen King", "1977", "Fiction",
+      "https://drive.google.com/file/d/15o7_2EvB_gBW8oLKjnEJPNU2qzeIVni0/view?usp=drive_link")
 ];
 
 List<Book> newBooks = [
   Book("Voice & speech in the theatre", "J. Clifford Turner", "1950", "Culture",
-      "pexels-1"),
-  Book("Anlass zur Unruhe", "Eric Ambler", "1838", "Classic", "pexels-2"),
-  Book("Those barren leaves", "Aldous Huxley", "1925", "Classic", "pexels-5"),
+      "https://m.media-amazon.com/images/I/41CeEe4dVkL._SX322_BO1,204,203,200_.jpg"),
+  Book(
+      "King Arthur: The Making of the Legend",
+      "Nicholas J. Higham",
+      "2010",
+      "History",
+      "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1670515114/pro_pbid_4259637.jpg"),
+  Book("Those barren leaves", "Aldous Huxley", "1925", "Classic",
+      "https://m.media-amazon.com/images/I/31l6uFhGAAS._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"),
   Book("The savage pilgrimage", "Catherine Carswell", "1932", "Classic",
-      "pexels-4"),
+      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1408939575i/8142412.jpg"),
   Book("The human polity", "Kay Lawson", "1984", "Political science",
-      "pexels-5"),
+      "https://m.media-amazon.com/images/I/51z1Qlg4+uL._SX409_BO1,204,203,200_.jpg"),
 ];
 
 class RecommendedBook extends Book {
@@ -179,4 +193,13 @@ List<RecommendedBook> recommendedBooks = [
       "Introduction to Intellectual Property provides a clear, effective introduction to patents, copyright, trademarks, and trade secrets. The text may be used by students and instructors in formal courses, as well as those applying intellectual property considerations to entrepreneurship, marketing, law, computer science, engineering, design, or other fields. The luminaries involved with this project represent the forefront of knowledge and experience, and the material offers considerable examples and scenarios, as well as exercises and references.",
       "https://assets.openstax.org/oscms-prodcms/media/documents/Introduction_to_Intellectual_Property_2PYaEdp.pdf?_gl=1*9iwybg*_ga*NjA1Mjg0NDU3LjE2ODk4NjIxNjY.*_ga_T746F8B0QC*MTY4OTg2MjE3MC4xLjEuMTY4OTg2MzQ0OC41OC4wLjA.",
       "OpenStax"),
+  RecommendedBook(
+      "Mind of the Leader: How to Lead Yourself, Your People, and Your Organization for Extraordinary Results",
+      "Rasmus Hougaard",
+      "2018",
+      "Finance, Management",
+      "https://m.media-amazon.com/images/I/41DkII2Dw4L._SX331_BO1,204,203,200_.jpg",
+      "Join the global movement that's making corporations more people-centric to achieve great results. The world is facing a global leadership crisis. Seventy-seven percent of leaders think they do a good job of engaging their people, yet 88 percent of employees say their leaders don't engage enough. There is also a high level of suffering in the workplace: 35 percent of employees would forgo a pay raise to see their leaders fired. This is an enormous waste of human talent--despite the fact that \$46 billion is spent each year on leadership development. Based on extensive research, including assessments of more than 35,000 leaders and interviews with 250 C-level executives, The Mind of the Leader concludes that organizations and leaders aren't meeting employees' basic human needs of finding meaning, purpose, connection, and genuine happiness in their work. But more than a description of the problem, The Mind of the Leader offers a radical, yet practical, solution. To solve the leadership crisis, organizations need to put people at the center of their strategy. They need to develop managers and executives who lead with three core mental qualities: mindfulness, selflessness, and compassion. Using real-world inspirational examples from Marriott, Accenture, McKinsey & Company, LinkedIn, and many more, The Mind of the Leader shows how this new kind of leadership turns conventional leadership thinking upside down. It represents a radical redefinition of what it takes to be an effective leader--and a practical, hard-nosed solution to every organization's engagement and execution problems.",
+      "https://www.amazon.de/Mind-Leader-Rasmus-Hougaard/dp/1633693422/ref=asc_df_1633693422/?tag=googshopde-21&linkCode=df0&hvadid=310779890634&hvpos=&hvnetw=g&hvrand=16910282578673381008&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1004351&hvtargid=pla-426021483056&psc=1&th=1&psc=1&tag=&ref=&adgrpid=70301320708&hvpone=&hvptwo=&hvadid=310779890634&hvpos=&hvnetw=g&hvrand=16910282578673381008&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1004351&hvtargid=pla-426021483056",
+      "Amazon")
 ];

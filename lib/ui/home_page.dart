@@ -11,42 +11,40 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final String time = DateTime.now().hour.toString();
     // var timeToday = TimeOfDay.now().toString();
-    final String today = DateTime.now().day.toString();
-    final String time2 = DateTime.now().month.toString();
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(1.0),
         child: Column(
           children: [
             // Head Banner
-            Column(
-              children: [
-                Text(today),
-                Text(time),
-                Text(time2),
-              ],
-            ),
             Container(
-              height: 100,
+              height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
                   image: const DecorationImage(
                       image: AssetImage("assets/images/pexels-0.jpg"),
                       fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(10)),
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text("Welcome to SBG Finder"),
+                    child: Text("Welcome to SBG Finder",
+                        style: TextStyle(
+                            fontFamily: 'Tangerine', color: Colors.white)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Browse, find and manage ebooks for free",
+                        style: TextStyle(
+                            fontFamily: 'Tangerine', color: Colors.white)),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Browser, read Ebooks for free"),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(DateTime.now().toString()),
                   ),
                 ],
               ),
@@ -56,9 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Popular Now",
-                  style: TextStyle(fontSize: 20),
+                const Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(
+                    "Popular Now",
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 TextButton(
                     onPressed: () {
@@ -96,9 +97,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "New Books",
-                  style: TextStyle(fontSize: 20),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "New Books",
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 TextButton(onPressed: () {}, child: const Text("See more")),
               ],
@@ -139,43 +143,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 150,
-                    child: Row(
-                      children: [
-                        Container(
-                          // BookCover Container
-                          width: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: const DecorationImage(
-                                image: AssetImage("assets/images/pexels-0.jpg"),
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                        //
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text("The Roman and the Teuton"),
-                                const Text("Author: Catherine Carswell (2020)"),
-                                const Text("Category: Novel"),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: const Text("View Details")),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                   // First recommdended book ends
+                  recommededBookBox(recommendedBooks[14]),
                   recommededBookBox(recommendedBooks[0]),
                   recommededBookBox(recommendedBooks[1]),
                   recommededBookBox(recommendedBooks[2]),
@@ -217,8 +186,7 @@ Widget popularBookBox(Book popularBooks) {
           height: 200,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image:
-                      AssetImage("assets/images/${popularBooks.bookCover}.jpg"),
+                  image: NetworkImage(popularBooks.bookCover),
                   fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(10)),
         ),
@@ -248,8 +216,7 @@ Widget newBookBox(Book newBooks) {
           height: 200,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/${newBooks.bookCover}.jpg"),
-                  fit: BoxFit.cover),
+                  image: NetworkImage(newBooks.bookCover), fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(10)),
         ),
         Expanded(

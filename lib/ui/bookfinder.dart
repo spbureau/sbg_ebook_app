@@ -22,6 +22,8 @@ class _BookFinderState extends State<BookFinder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // backgroundColor: Colors.grey,
+        elevation: 0,
         title: const Text("SBG Finder"),
         actions: [
           IconButton(
