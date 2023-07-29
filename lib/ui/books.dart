@@ -1,73 +1,216 @@
 // Books Data
 
+// variables to be used to set the index of a book pressed on
+// in order to display the details of the book pressed
+
+int popBookTappedIndex = 0;
+int newBookTappedIndex = 0;
+
 class Book {
   String bookTitle;
   String author;
   String yearPublished;
   String category;
   String bookCover;
-
-  Book(this.bookTitle, this.author, this.yearPublished, this.category,
-      this.bookCover);
-}
-
-List<Book> popularBooks = [
-  Book("Court of Mist and Fury", " Sarah J. Maas", "2014", "Fiction",
-      "https://images.thalia.media/00/-/3b61c0fac5e4434180305644aca2014e/a-court-of-mist-and-fury-taschenbuch-sarah-j-maas-englisch.jpeg"),
-  Book("Harry Potter und der Feuerkelch", "J. K. Rowling", "1999", "Fiction",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCckcL8H3dQOqDC0rph3LbW0W-4Ey6MEAiKw&usqp=CAU"),
-  Book("The Gruffalo", "Julia Donaldson", "1999", "Fiction",
-      "https://pictures.abebooks.com/inventory/md/md31497786270.jpg"),
-  Book("The Wrong Wife", "Carolyn McSparren", "2000", "Romance",
-      "https://m.media-amazon.com/images/I/51U3VyVA0ML._SY346_.jpg"),
-  Book("A kingdom of dreams", "Judith McNaught", "1989", "Romance",
-      "https://i.ebayimg.com/images/g/a7sAAOSweyRkPCdV/s-l500.jpg"),
-  Book(
-      "The Seven Husbands of Evelyn Hugo",
-      "Taylor Jenkins Reid",
-      "2017",
-      "Fiction",
-      "https://m.media-amazon.com/images/I/51RUJq8gupL._SY264_BO1,204,203,200_QL40_ML2_.jpg"),
-  Book("The Shining", "Stephen King", "1977", "Fiction",
-      "https://drive.google.com/file/d/15o7_2EvB_gBW8oLKjnEJPNU2qzeIVni0/view?usp=drive_link")
-];
-
-List<Book> newBooks = [
-  Book("Voice & speech in the theatre", "J. Clifford Turner", "1950", "Culture",
-      "https://m.media-amazon.com/images/I/41CeEe4dVkL._SX322_BO1,204,203,200_.jpg"),
-  Book(
-      "King Arthur: The Making of the Legend",
-      "Nicholas J. Higham",
-      "2010",
-      "History",
-      "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1670515114/pro_pbid_4259637.jpg"),
-  Book("Those barren leaves", "Aldous Huxley", "1925", "Classic",
-      "https://m.media-amazon.com/images/I/31l6uFhGAAS._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"),
-  Book("The savage pilgrimage", "Catherine Carswell", "1932", "Classic",
-      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1408939575i/8142412.jpg"),
-  Book("The human polity", "Kay Lawson", "1984", "Political science",
-      "https://m.media-amazon.com/images/I/51z1Qlg4+uL._SX409_BO1,204,203,200_.jpg"),
-];
-
-class RecommendedBook extends Book {
   String description;
   String sourceUrl;
   String sourceLibrary;
 
-  RecommendedBook(
-      super.bookTitle,
-      super.author,
-      super.yearPublished,
-      super.category,
-      super.bookCover,
-      this.description,
-      this.sourceUrl,
-      this.sourceLibrary);
+  Book(this.bookTitle, this.author, this.yearPublished, this.category,
+      this.bookCover, this.description, this.sourceUrl, this.sourceLibrary);
+
+  // factory Book.fromJson(Map<String, dynamic> json) {
+  //   return Book(
+  //     bookTitle: json['title'],
+  //     author: json['author'],
+  //     yearPublished: json['year'],
+  // category: json['category'],
+  // bookCover: json['thumnbnailLink'],
+  // description: json['description'],
+  // sourceUrl: json['sourceurl'],
+  // sourceLibrary: json['sourceLibrary']
+  //   );
+  // }
 }
 
+// Book popularBookTapped = Book("", "", "", "", "", "", "", "");
+
+// List<Book> popularBooks = [
+//   Book(
+//       "Court of Mist and Fury",
+//       " Sarah J. Maas",
+//       "2014",
+//       "Fiction",
+//       // "https://images.thalia.media/00/-/3b61c0fac5e4434180305644aca2014e/a-court-of-mist-and-fury-taschenbuch-sarah-j-maas-englisch.jpeg",
+//       "https://m.media-amazon.com/images/I/51U7NnjJaxL._SX326_BO1,204,203,200_.jpg"),
+//   Book("Harry Potter und der Feuerkelch", "J. K. Rowling", "1999", "Fiction",
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCckcL8H3dQOqDC0rph3LbW0W-4Ey6MEAiKw&usqp=CAU"),
+//   Book("The Gruffalo", "Julia Donaldson", "1999", "Fiction",
+//       "https://pictures.abebooks.com/inventory/md/md31497786270.jpg"),
+//   Book("The Wrong Wife", "Carolyn McSparren", "2000", "Romance",
+//       "https://m.media-amazon.com/images/I/51U3VyVA0ML._SY346_.jpg"),
+//   Book("A kingdom of dreams", "Judith McNaught", "1989", "Romance",
+//       "https://i.ebayimg.com/images/g/a7sAAOSweyRkPCdV/s-l500.jpg"),
+//   Book(
+//       "The Seven Husbands of Evelyn Hugo",
+//       "Taylor Jenkins Reid",
+//       "2017",
+//       "Fiction",
+//       "https://m.media-amazon.com/images/I/51RUJq8gupL._SY264_BO1,204,203,200_QL40_ML2_.jpg"),
+//   Book("The Shining", "Stephen King", "1977", "Fiction",
+//       "https://drive.google.com/file/d/15o7_2EvB_gBW8oLKjnEJPNU2qzeIVni0/view?usp=drive_link")
+// ];
+
+List<Book> popularBooks = [
+  Book(
+      "His Needs, Her Needs: Building An Affair-Proof Marriage",
+      "Willard F. Harley, Jr.",
+      "2011",
+      "Love, Marriage, Relationship",
+      "https://m.media-amazon.com/images/I/51U7NnjJaxL._SX326_BO1,204,203,200_.jpg",
+      "This book will educate you in the care of your spouse,' explains Dr Willard Harley. 'Once you have learned its lessons, your spouse will find you irresistible, a condition that's essential to a happy and successful marriage.' This fresh and highly entertaining book identifies the ten most important needs within marriage for husbands and wives. It teaches you how to fulfil each other's needs. Couples who find each other irresistible during the early years of their marriage may become incompatible if they fail to meet these central needs. According to Dr Harley, the needs of men and women are similar, but their priorities are vastly different. Are you able to identify which of the following needs are his and which are hers? In what order would you place them? Admiration, Affection, An attractive spouse,Conversation, Domestic support, Family commitment, Financial support, Honesty and openness, Recreational companionship, Sexual fulfilment",
+      "https://drive.google.com/file/d/1_XhcVWsKYcD_BUs4gG_RSw-OpNNXTH_R/view?usp=drive_link",
+      "Google"),
+  Book(
+      "7 Simple Choices for a Better Tomorrow",
+      "Bob Merritt",
+      "2012",
+      "Life, Inspirational",
+      "https://m.media-amazon.com/images/I/41NiF7MwV5L._SX322_BO1,204,203,200_.jpg",
+      "Life is hard--for everyone. No matter how blessed or fortunate you might be, there is a level of difficulty to your life: hard classes, jobs, relationships, and losses. But by following seven basic life disciplines, anyone can experience accomplishment, freedom, and ease in navigating through life's daily challenges.\nIn this positive, insightful book, veteran pastor Bob Merritt describes a set of universal principles that can work for everyone in every stage of life, showing that what you do today determines who you become tomorrow.\nThe life disciplines in this book will lead readers away from failure and regret to accomplishment and ease--not easy, but ease in getting 'out of the boat' and on with navigating through life's daily challenges.&quot;--John Ortberg, author, The Me I Want to Be.\nHere's your breakthrough--insightful, practical, biblical wisdom that can turn your life around!--Lee Strobel, author, The Case for the Real Jesus",
+      "https://books.google.de/books?id=hen2eIW6C4sC&pg=PT10&dq=7+simple+choices&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjX5eGwnKyAAxWlh_0HHex1ALgQ6AF6BAgGEAI",
+      "Google Books"),
+  Book(
+      "Reduce Me to Love: Unlocking the Secret to Lasting Joy",
+      "Joyce Meyer",
+      "2007",
+      "Christian, Inspirational",
+      "https://m.media-amazon.com/images/I/41KJSQQbEkL._SX326_BO1,204,203,200_.jpg",
+      "#1 New York Times bestselling author Joyce Meyer points out, \"You can't give away something you don't have!\"\nMany people who are trying to walk in God's love are doing so in their own strength, but they can't demonstrate God's love because they never stop to receive it themselves. Because God is love, loving and being loved is what makes life worth living. Once you learn how to truly accept God's unconditional love for you and walk in love like Jesus did, you will discover the sweet peace, deep joy, and unfailing strength that come with being willing to say, REDUCE ME TO LOVE!",
+      "https://books.google.de/books?id=zRk3AQAAQBAJ&printsec=frontcover&dq=reduce+me+to+love&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwj498OUoKyAAxVr2AIHHZUyC_UQ6AF6BAgLEAI",
+      "Google Books"),
+  Book(
+      "Act Like a Success, Think Like a Success: Discovering Your Gift and the Way to Life's Riches",
+      "Steve Harvey",
+      "2015",
+      "Personal Transformation, Inspirational",
+      "https://m.media-amazon.com/images/I/51h8vuMPGLL._SX330_BO1,204,203,200_.jpg",
+      "In his phenomenal #1 New York Times bestseller Act Like a Lady, Think Like a Man, Steve Harvey told women what it takes to succeed in love. Now, he tells everyone how to succeed in life, giving you the keys to fulfill your purpose. Countless books on success tell you what you need to get that you don’t already possess. \nIn Act Like a Success, Think Like a Success, Steve Harvey tells you how to achieve your dreams using the gift you already have. Every one of us was born with a gift endowed by our creator—something you do the best at with very little effort. While it can be like someone else’s, your gift is yours alone. No one can take it away. You are the only one who can use it—or waste it.\nSteve shows how that gift holds your greatest chance at success, and the fulfillment of your life’s mission and purpose.",
+      "https://books.google.de/books?id=TOhzAwAAQBAJ&printsec=frontcover&dq=act+and+think+like+a+success&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjat6_joayAAxX3wAIHHawtCVsQ6AF6BAgJEAI",
+      "Google"),
+  Book(
+      "As a Man Thinketh",
+      "James Allen",
+      "2016",
+      "Practical and Motivational Self-help",
+      "https://m.media-amazon.com/images/I/410b9T769dL._SX331_BO1,204,203,200_.jpg",
+      "As a Man Thinketh is a literary essay and book by James Allen, published in 1903. It was described by Allen as ... [dealing] with the power of thought, and particularly with the use and application of thought to happy and beautiful issues.\n\nI have tried to make the book simple, so that all can easily grasp and follow its teaching, and put into practice the methods which it advises. It shows how, in his own thought---world, each man holds the key to every condition, good or bad, that enters into his life, and that, by working patiently and intelligently upon his thoughts, he may remake his life, and transform his circumstances. \n\nThe price of the book is only one shilling, and it can be carried in the pocket. It was also described by Allen as \"A book that will help you to help yourself\", \"A pocket companion for thoughtful people\", and \"A book on the power and right application of thought.\"",
+      "https://books.google.de/books?id=Ov4qEAAAQBAJ&printsec=frontcover&dq=as+a+man+thinketh+by+james+allen&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwigjL7Ho6yAAxWfywIHHQA0BacQ6AF6BAgLEAI",
+      "Google"),
+  Book(
+      "The dream book of Love and Relationships",
+      "Gillian Holloway",
+      "2010",
+      "Love, Relationship",
+      "https://m.media-amazon.com/images/I/51KVeaP+ThL.jpg",
+      "What do your dreams really mean…for your love life?\nThe Complete Dream Book of Love and Relationships is a groundbreaking guidebook for using what's already in your head to understand your heart. Respected dream analyst and intuition expert Gillian Holloway uses the interpretations of 30,000 actual dreams from people just like you to help you access the wisdom in your dreams so you can make the most of your relationships. \nDiscover why your dreams contain some of the best clues to real love.",
+      "https://read.amazon.com/sample/B003L203BK?f=1&l=en_US&r=e43252e8&rid=6NVVXGHKFX55M2JR0R8H&sid=144-6794134-5671941&ref_=litb_m",
+      "Amazon"),
+];
+
+// List<Book> newBooks = [
+//   Book("Voice & speech in the theatre", "J. Clifford Turner", "1950", "Culture",
+//       "https://m.media-amazon.com/images/I/41CeEe4dVkL._SX322_BO1,204,203,200_.jpg"),
+//   Book(
+//       "King Arthur: The Making of the Legend",
+//       "Nicholas J. Higham",
+//       "2010",
+//       "History",
+//       "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1670515114/pro_pbid_4259637.jpg"),
+//   Book("Those barren leaves", "Aldous Huxley", "1925", "Classic",
+//       "https://m.media-amazon.com/images/I/31l6uFhGAAS._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"),
+//   Book("The savage pilgrimage", "Catherine Carswell", "1932", "Classic",
+//       "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1408939575i/8142412.jpg"),
+//   Book("The human polity", "Kay Lawson", "1984", "Political science",
+//       "https://m.media-amazon.com/images/I/51z1Qlg4+uL._SX409_BO1,204,203,200_.jpg"),
+// ];
+
+List<Book> newBooks = [
+  Book(
+      "In Single, Married, Separated and Life after Divorce",
+      "Myles Munroe",
+      "2014",
+      "Relationship, Marriage",
+      "https://m.media-amazon.com/images/I/51NjSG5pHsL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg",
+      "Singleness is a myth. To be single means to be all one (alone), separate, unique and whole.\n\nMARRIAGE is when two separate, unique and whole persons (one male, one female) make a covenant to exchange vows, committing their lives to remain together until death. \n\nSeparation in an unofficial divorce with the exact same effect as divorce. It is the most tragic state of limbo. \n\nDivorce means to desert. The armed forces prosecute deserters. God has made no provision for divorce in the Bible. If you are invited to a wedding, you are a covenant witness, and if this couple later divorces, you should be invited to the divorce just as you were to the wedding.",
+      "https://drive.google.com/file/d/1r1abQiDVUSSoM7F7j-UfhQHzXaV1H6_2/view?usp=drive_link",
+      "Finder"),
+  Book(
+      "Management Information Systems: Managerial Perspectives, 4th Edition",
+      "A. P. Goyal",
+      "2014",
+      "Management, Information Systems",
+      "https://m.media-amazon.com/images/I/51B9A2mVZBL.jpg",
+      "The 4th edition of this book has been updated to meet the new requirements of the students, professors, and practitioners. This is an enhanced version of the earlier editions. To update and enhance the coverage of the book, many chapters have been restructured, and some new content/chapters have also been added.\nIn addition, to have better engagement and learning outcomes for the reader, certain new pedagogical features have also been added.",
+      "https://www.google.de/books/edition/Management_Information_Systems_Manageria/ZaNDDAAAQBAJ?hl=en&gbpv=0",
+      "Google"),
+  Book(
+      "Foundations of Programming Languages",
+      "Kent D. Lee",
+      "2015",
+      "Computer Science, Programming",
+      "https://m.media-amazon.com/images/I/41roTovyI5L._SX328_BO1,204,203,200_.jpg",
+      "This clearly written and simple to follow textbook introduces the reader to the three styles of programming, examining object-oriented/imperative, functional, and logic programming.\nThe focus of the text moves from highly prescriptive languages to very descriptive languages, demonstrating the many and varied ways in which we can think about programming. Designed for interactive learning both inside and outside of the classroom, each programming paradigm is highlighted through the implementation of a non-trivial programming language, demonstrating when each language may be appropriate for a given problem.\nTopics and features:\nIncludes review questions and solved practice exercises, with supplementary code and support files available from an associated websiteDiscusses...",
+      "https://books.google.de/books?id=dERFBgAAQBAJ&pg=PR5&dq=programming&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjSq4TYuqyAAxXFtqQKHaWQDw0Q6AF6BAgJEAI",
+      "Google"),
+  Book(
+      "Financial Accounting (English Edition) e-Book for B.Com",
+      "Dr. Divya Agrawal, Dr. Arvind Kumar Yadav2022",
+      "2022",
+      "Accounting and Finance",
+      "https://m.media-amazon.com/images/I/51NhNep0UJL._SY264_BO1,204,203,200_QL40_FMwebp_.jpg",
+      "\"Financial Accounting (English Edition)\" is a comprehensive e-book tailored for B.Com 2nd semester students studying at U.P. State Universities. Published by Thakur Publication, this e-book follows the common syllabus and offers a comprehensive understanding of financial accounting principles and practices.\n\nCovering topics such as accounting concepts, recording transactions, preparation of financial statements, and analysis of financial data, the e-book provides clear explanations and practical examples. With its student-friendly approach and up-to-date content, this e-book serves as an invaluable resource for students pursuing a degree in financial accounting.",
+      "https://books.google.de/books?id=PALGEAAAQBAJ&pg=PA28&dq=accounting&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwiLte-dvayAAxXGhf0HHUsZB8EQ6AF6BAgNEAI",
+      "Google"),
+  Book(
+      "Data Structures and Algorithms with Python",
+      "Steve Hubbard, Kent D. Lee",
+      "2015",
+      "Computer Scinece",
+      "https://m.media-amazon.com/images/I/41qyl3rjnxL._SX331_BO1,204,203,200_.jpg",
+      "This textbook explains the concepts and techniques required to write programs that can handle large amounts of data efficiently. Project-oriented and classroom-tested, the book presents a number of important algorithms supported by examples that bring meaning to the problems faced by computer programmers.\nThe idea of computational complexity is also introduced, demonstrating what can and cannot be computed efficiently so that the programmer can make informed judgements about the algorithms they use.\n\nFeatures: \nincludes both introductory and advanced data structures and algorithms topics, with suggested chapter sequences for those respective courses provided in the preface; provides learning goals, review questions and programming exercises in each chapter, as well as numerous illustrative examples; offers downloadable programs and supplementary files at an associated website, with instructor materials available from the author; presents a primer on Python for those from a different language background.",
+      "https://books.google.de/books?id=jnEoBgAAQBAJ&printsec=frontcover&dq=Data+Structures+and+Algorithms+with+Python&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwj1vq_PxqyAAxV0yAIHHZC3A-8Q6AF6BAgEEAI",
+      "Google"),
+  Book("", "", "2014", "", "", "", "", ""),
+];
+// class Book extends Book {
+//   String description;
+//   String sourceUrl;
+//   String sourceLibrary;
+
+//   Book(
+//       super.bookTitle,
+//       super.author,
+//       super.yearPublished,
+//       super.category,
+//       super.bookCover,
+//       this.description,
+//       this.sourceUrl,
+//       this.sourceLibrary);
+// }
+
 // Recommended Book
-List<RecommendedBook> recommendedBooks = [
-  RecommendedBook(
+List<Book> recommendedBooks = [
+  Book(
+      "His Needs, Her Needs: Building An Affair-Proof Marriage",
+      "Willard F. Harley, Jr.",
+      "2011",
+      "Love, Marriage, Relationship",
+      "https://m.media-amazon.com/images/I/51U7NnjJaxL._SX326_BO1,204,203,200_.jpg",
+      "This book will educate you in the care of your spouse,' explains Dr Willard Harley. 'Once you have learned its lessons, your spouse will find you irresistible, a condition that's essential to a happy and successful marriage.' This fresh and highly entertaining book identifies the ten most important needs within marriage for husbands and wives. It teaches you how to fulfil each other's needs. Couples who find each other irresistible during the early years of their marriage may become incompatible if they fail to meet these central needs. According to Dr Harley, the needs of men and women are similar, but their priorities are vastly different. Are you able to identify which of the following needs are his and which are hers? In what order would you place them? Admiration, Affection, An attractive spouse,Conversation, Domestic support, Family commitment, Financial support, Honesty and openness, Recreational companionship, Sexual fulfilment",
+      "https://drive.google.com/file/d/1_XhcVWsKYcD_BUs4gG_RSw-OpNNXTH_R/view?usp=drive_link",
+      "Google"),
+  Book(
       "P.S. Never in a Million Years",
       "J. S. Cooper",
       "2022",
@@ -76,7 +219,7 @@ List<RecommendedBook> recommendedBooks = [
       "A scorching series starter from a New York Times bestselling author! Marcia cant stand her arrogant new boss. But when she accidentally sends an email insulting his looks and cocky attitude, he summons her to his office to teach her a lesson she will never forget…",
       "https://r.bookbub.com/promotion_site_active_check/210701?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "Faking Love with the Billionaire Boss",
       "Serenity Woods",
       "2023",
@@ -85,7 +228,7 @@ List<RecommendedBook> recommendedBooks = [
       "Heidi has never forgotten the kiss she shared years ago with Titus, her brother’s best friend. When he turns up in need of a date for a swanky party, she agrees to spend the night posing as his girlfriend — but unexpectedly sharing a room makes their attraction impossible to resist…",
       "https://r.bookbub.com/promotion_site_active_check/212562?affiliate_batch=0&affiliate_label=a&affiliate_variant=individualbookpagesite&promotion_type=deals&retailer_id=1&traffic_source=",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "The Way West",
       "James A. Crutchfield",
       "2015",
@@ -94,7 +237,7 @@ List<RecommendedBook> recommendedBooks = [
       "The journey westward has long been shrouded in legend and myth. Setting the record straight, this essential collection documents the exploration of the American frontier — from the network of trails traversed by pioneers to daily life as a Texas Ranger.",
       "https://r.bookbub.com/promotion_site_active_check/211536?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "The French & Indian War",
       "Walter R. Borneman",
       "2021",
@@ -103,7 +246,7 @@ List<RecommendedBook> recommendedBooks = [
       "No description available",
       "https://r.bookbub.com/promotion_site_active_check/209741?promotion_type=deals&retailer_id=4",
       "Google"),
-  RecommendedBook(
+  Book(
       "Entrepreneurship",
       "Michael Laverty, Chris Littel, North Carolina State University",
       "2020",
@@ -112,7 +255,7 @@ List<RecommendedBook> recommendedBooks = [
       "This textbook is intended for use in introductory Entrepreneurship classes at the undergraduate level. Due to the wide range of audiences and course approaches, the book is designed to be as flexible as possible. Theoretical and practical aspects are presented in a balanced manner, and specific components such as the business plan are provided in multiple formats. Entrepreneurship aims to drive students toward active participation in entrepreneurial roles, and exposes them to a wide range of companies and scenarios.",
       "https://assets.openstax.org/oscms-prodcms/media/documents/Entrepreneurship-WEB_qNSArxT.pdf?_gl=1*4o7k0d*_ga*NjA1Mjg0NDU3LjE2ODk4NjIxNjY.*_ga_T746F8B0QC*MTY4OTg2MjE3MC4xLjEuMTY4OTg2MjM5OC41OS4wLjA.",
       "OpenStax"),
-  RecommendedBook(
+  Book(
       "Principles of Microeconomics 3e",
       "David Shapiro, Daniel MacDonald, Steven A. Greenlaw",
       "2022",
@@ -121,7 +264,7 @@ List<RecommendedBook> recommendedBooks = [
       "Principles of Microeconomics 3e covers the scope and sequence of most one semester introductory microeconomics courses. The third edition takes a balanced approach to the theory and application of microeconomics concepts. The text uses conversational language and ample illustrations to explore economic theories, and provides a wide array of examples using both fictional and real-world applications.",
       "https://assets.openstax.org/oscms-prodcms/media/documents/Microeconomics3e-WEB.pdf?_gl=1*fr13n5*_ga*NjA1Mjg0NDU3LjE2ODk4NjIxNjY.*_ga_T746F8B0QC*MTY4OTg2MjE3MC4xLjEuMTY4OTg2MjkxMS41OS4wLjA.",
       "OpenStax"),
-  RecommendedBook(
+  Book(
       "Faking Love with the Billionaire Boss",
       "Serenity Woods",
       "2023",
@@ -130,7 +273,7 @@ List<RecommendedBook> recommendedBooks = [
       "Heidi has never forgotten the kiss she shared years ago with Titus, her brother’s best friend. When he turns up in need of a date for a swanky party, she agrees to spend the night posing as his girlfriend — but unexpectedly sharing a room makes their attraction impossible to resist…",
       "https://r.bookbub.com/promotion_site_active_check/212562?affiliate_batch=0&affiliate_label=a&affiliate_variant=individualbookpagesite&promotion_type=deals&retailer_id=1&traffic_source=",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "Wish",
       "Morgan Rice",
       "2020",
@@ -139,7 +282,7 @@ List<RecommendedBook> recommendedBooks = [
       "As 17-year-old Taylor adjusts to life at a juvenile detention camp in the Pacific Northwest, she explores her own mysterious power… But does the Mistfalls Wilderness Camp have a dark secret? An engrossing fantasy from a USA Today bestselling author!",
       "https://r.bookbub.com/promotion_site_active_check/208602?promotion_type=deals&retailer_id=4",
       "Google"),
-  RecommendedBook(
+  Book(
       "Honeymoon for One",
       "Chris Keniston",
       "2018",
@@ -148,7 +291,7 @@ List<RecommendedBook> recommendedBooks = [
       "First in a series: When she’s left at the altar, Michelle goes on her honeymoon alone — and decides to ditch her good-girl reputation with a handsome stranger. But then he shows up on her first day back at work… “A feel-good escape” (New York Times bestselling author Roxanne St. Claire) with over 4,200 five-star Amazon ratings!",
       "https://r.bookbub.com/promotion_site_active_check/210880?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "The Hanging Tree",
       "Ellery Kane",
       "2019",
@@ -157,7 +300,7 @@ List<RecommendedBook> recommendedBooks = [
       "Young Evie witnesses a vicious attack on her best friend, but she can’t remember the assailant’s face. When another girl is strangled years later, she must recover her memories of that lost night to identify the culprit — who might be closer than she thinks. \“Generates genuine suspense… Excellent\” (Kirkus Reviews).",
       "https://r.bookbub.com/promotion_site_active_check/211743?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "Quintessentially the One",
       "Aleatha Romig",
       "Unknown",
@@ -166,7 +309,7 @@ List<RecommendedBook> recommendedBooks = [
       "From a New York Times bestselling author: When Dax returns home to small-town Riverbend, he learns his late grandmother left something treasured to his college love, Kandace. But little does Dax know that Kandace has been hiding a precious secret of her own for the past five years… one who looks just like him!",
       "https://r.bookbub.com/promotion_site_active_check/211658?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "King Arthur: The Making of the Legend",
       "Nicholas J. Higham",
       "2010",
@@ -175,7 +318,7 @@ List<RecommendedBook> recommendedBooks = [
       'Was King Arthur real? Written by a leading medievalist, this \“fascinating, authoritative analysis\” (The Guardian) seeks the origins of the mythic British ruler, evaluating previous investigations while examining the details of Arthur’s story. \“A thoughtful and patient, rational and fair-minded book\” (The Sunday Times).',
       "https://r.bookbub.com/promotion_site_active_check/211732?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "Mourning Lincoln",
       "Martha Hodes",
       "2017",
@@ -184,7 +327,7 @@ List<RecommendedBook> recommendedBooks = [
       'Longlisted for the National Book Award: Witness the public response to Abraham Lincoln’s assassination in a history that mines diaries, letters, and more for a unique window into a pivotal period. “The amount of research is simply staggering… Highly original, lucidly written” (Pulitzer Prize–winning author James M. McPherson).',
       "https://r.bookbub.com/promotion_site_active_check/211733?promotion_type=deals&retailer_id=1",
       "Amazon"),
-  RecommendedBook(
+  Book(
       "Introduction to Intellectual Property",
       "David Kline, David Kappos",
       "2021",
@@ -193,7 +336,7 @@ List<RecommendedBook> recommendedBooks = [
       "Introduction to Intellectual Property provides a clear, effective introduction to patents, copyright, trademarks, and trade secrets. The text may be used by students and instructors in formal courses, as well as those applying intellectual property considerations to entrepreneurship, marketing, law, computer science, engineering, design, or other fields. The luminaries involved with this project represent the forefront of knowledge and experience, and the material offers considerable examples and scenarios, as well as exercises and references.",
       "https://assets.openstax.org/oscms-prodcms/media/documents/Introduction_to_Intellectual_Property_2PYaEdp.pdf?_gl=1*9iwybg*_ga*NjA1Mjg0NDU3LjE2ODk4NjIxNjY.*_ga_T746F8B0QC*MTY4OTg2MjE3MC4xLjEuMTY4OTg2MzQ0OC41OC4wLjA.",
       "OpenStax"),
-  RecommendedBook(
+  Book(
       "Mind of the Leader: How to Lead Yourself, Your People, and Your Organization for Extraordinary Results",
       "Rasmus Hougaard",
       "2018",
@@ -203,3 +346,5 @@ List<RecommendedBook> recommendedBooks = [
       "https://www.amazon.de/Mind-Leader-Rasmus-Hougaard/dp/1633693422/ref=asc_df_1633693422/?tag=googshopde-21&linkCode=df0&hvadid=310779890634&hvpos=&hvnetw=g&hvrand=16910282578673381008&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1004351&hvtargid=pla-426021483056&psc=1&th=1&psc=1&tag=&ref=&adgrpid=70301320708&hvpone=&hvptwo=&hvadid=310779890634&hvpos=&hvnetw=g&hvrand=16910282578673381008&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1004351&hvtargid=pla-426021483056",
       "Amazon")
 ];
+
+List<Book> savedBooks = [];

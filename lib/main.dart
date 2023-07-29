@@ -1,10 +1,10 @@
-import 'package:bookfinder/ui/popular_now.dart';
+import 'package:bookfinder/ui/about_books.dart';
 import 'package:flutter/material.dart';
 import 'ui/bookfinder.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: "SBG EBook Finder",
+    title: "SBG Ebook Finder",
     home: const BookFinder(),
     theme: ThemeData(
         fontFamily: "Montserrat",
@@ -17,7 +17,8 @@ void main() {
     // initialRoute: '/',
     routes: {
       '/home': (context) => const BookFinder(),
-      '/popularNowScreen': (context) => const PopularNowScreen(),
+      '/AboutNewBook': (context) => const AboutNewBookScreen(),
+      '/AboutPopularBook': (context) => const AboutPopularBookScreen(),
       '/AllRecommendedScreen': (context) => const AllRecommended()
     },
     debugShowCheckedModeBanner: false,
