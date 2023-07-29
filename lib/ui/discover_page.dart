@@ -1,17 +1,29 @@
 import 'dart:convert';
-
 import 'package:bookfinder/ui/books.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class GoogleBook {
-  String title;
-  String author;
-  String description;
-  String thumbnailLink;
+String noImage =
+    "https://images.pexels.com/photos/1765033/pexels-photo-1765033.jpeg?auto=compress&cs=tinysrgb&w=600";
+
+class GBook {
+  late String title;
+  late String author;
+  late String description;
+  late String thumbnailLink;
   // String accessUrl;
 
-  GoogleBook(this.title, this.author, this.description, this.thumbnailLink);
+  GBook(this.title, this.author, this.description, this.thumbnailLink);
+
+  GBook.fromJson(Map<String, dynamic> json) {
+    title = json['item']['volumeInfo']['title'] ??
+        "No title available"; // parsing the responseData as argument to the book
+    author = json['item']['volumeInfo']['authors'] ?? "No author information";
+    description =
+        json['item']['volumeInfo']['description'] ?? "No Description avalable";
+    thumbnailLink =
+        json['item']['volumeInfo']['imageLinks']['thumbnail'] ?? noImage;
+  }
 }
 
 class DiscoverScreen extends StatefulWidget {
@@ -26,40 +38,50 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   final String apiKey = "AIzaSyAxrpyHDxfg2aJs8xcxK207e7Uy9XbQnDY";
   String errorMessage = "";
 
-  List<GoogleBook> finalBooks = [];
+  List<GBook> finalBooks = [];
 
-  List<GoogleBook> myBooks = [];
+  List<GBook> myBooks = [];
 
-  Future<List> searchBooks(String searchTerm) async {
+  Future<List<GBook>> searchBooks(String searchTerm) async {
     var url =
         "https://www.googleapis.com/books/v1/volumes?q=${searchTermController.text}";
 
-    final response = await http.get(Uri.parse(url));
+    var response = await http.get(Uri.parse(url));
+
     if (response.statusCode == 200) {
-      final searchResult = jsonDecode(response.body);
-      debugPrint(response.body);
-      // debugPrint(response as String?);
-      setState(() {
-        debugPrint("Got some response!");
-        // debugPrint(finalBooks as String?);
-        myBooks = responseToString(searchResult['items']);
-      });
+      dynamic searchResult = jsonDecode(response.body);
+      debugPrint(response.body); //11
+      for (var book in searchResult) {
+        //11
+        myBooks.add(GBook.fromJson(book)); //11
+        debugPrint("Got some response! Adding...");
+      }
+      debugPrint("Done parsing and returned as below");
+      // return myBooks;
+      // return searchResult.map((e) => GBook.fromJson(e)).toList(); // 22
+
+      // setState(() {
+      //   myBooks = responseToString(searchResult['items']);
+      // });
     } else {
       debugPrint("Couldn't find any book!");
-      setState(() {
-        errorMessage = "Couldn't find any book!";
-      });
     }
-    debugPrint("Done parsing and returned as below");
+    setState(() {
+      debugPrint("inside initState");
+      finalBooks = myBooks;
+      debugPrint("Got ${finalBooks.length} books");
+    });
+    debugPrint("reurning...");
     return myBooks;
   }
 
-  List<GoogleBook> responseToString(List<dynamic> searchResult) {
-    List<GoogleBook> parsedBooks = [];
+/*
+  List<GBook> responseToString(List<dynamic> searchResult) {
+    List<GBook> parsedBooks = [];
     for (var book in searchResult) {
       debugPrint("About parsing them to GoogleBooks and myBooks");
 
-      parsedBooks.add(GoogleBook(
+      parsedBooks.add(GBook(
         book['item']['volumeInfo']
             ['title'], // parsing the responseData as argument to the book
         book['item']['volumeInfo']['authors'][0],
@@ -78,7 +100,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       String thumbnailLink =
           volumeInfo['imageLinks']['thumbnail'] ?? "No Thumbnail";
 
-      parsedBooks.add(GoogleBook(
+      parsedBooks.add(GBook(
         title,
         author,
         description,
@@ -88,14 +110,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     }
     return parsedBooks;
   }
+  */
 
   @override
-  void initState() {
-    super.initState();
-    finalBooks = myBooks;
-    debugPrint("inside initState");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +122,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         child: SingleChildScrollView(
           child: SizedBox(
             width: double.infinity,
-            height: 1000,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,6 +165,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                   ],
                 ), // Search Field Row Ends
+
                 // Search Categories
                 const Padding(
                   padding: EdgeInsets.all(10.0),
@@ -157,8 +174,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
+
+                // #Search categories
                 SingleChildScrollView(
-                  // Search categories
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -173,36 +191,47 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ],
                   ),
                 ),
+                /*
                 Expanded(
-                  child: ListView.builder(
-                      itemCount: finalBooks.length,
-                      itemBuilder: ((context, index) {
-                        // final book = myBooks[index];
-                        debugPrint("ListTile now and again");
-                        debugPrint(finalBooks[index].thumbnailLink);
-                        debugPrint(finalBooks[index].title);
-                        debugPrint(finalBooks[index].author);
-                        return Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: ListTile(
-                            leading:
-                                Image.network(finalBooks[index].thumbnailLink),
-                            title: Text(finalBooks[index].title),
-                            subtitle: Text(finalBooks[index].author),
-                            onTap: () {},
-                          ),
-                        );
-                      })),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    child: ListView.builder(
+                        itemCount: finalBooks.length,
+                        itemBuilder: ((BuildContext context, int index) {
+                          // final book = myBooks[index];
+                          debugPrint("ListTile now and again");
+                          // debugPrint(finalBooks[index].thumbnailLink);
+                          // debugPrint(finalBooks[index].title);
+                          // debugPrint(finalBooks[index].author);
+                          return Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.rectangle,
+                            ),
+                            height: 200,
+                            child: ListTile(
+                              leading: Image.network(
+                                  finalBooks[index].thumbnailLink),
+                              title: Text(finalBooks[index].title),
+                              subtitle: Text(finalBooks[index].author),
+                              onTap: () {},
+                            ),
+                          );
+                        })),
+                  ),
                 ),
+                */
+
                 Center(
                   child: Text(
                     errorMessage,
                     style: const TextStyle(color: Colors.red),
                   ),
                 ),
+
+                // Others
+                /*
                 const Text("Others", style: TextStyle(fontSize: 18)),
+                
                 Expanded(
                   child: ListView.builder(
                       itemCount: recommendedBooks.length,
@@ -226,6 +255,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         );
                       })),
                 ),
+                */
+
                 Container(
                   color: Colors.grey[200],
                   width: double.infinity,

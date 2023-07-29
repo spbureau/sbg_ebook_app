@@ -14,7 +14,9 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[200],
-        title: const Text("About book"),
+        foregroundColor: Colors.black,
+        title:
+            const Text("About book", style: TextStyle(color: Colors.black87)),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -22,17 +24,18 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: double.infinity,
-                height: 220,
+                height: 240,
                 child: Expanded(
                   child: Row(
                     // Row for book details
                     children: [
                       Container(
-                        width: 180,
-                        height: 200,
+                        width: 150,
+                        height: 220,
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
@@ -50,9 +53,9 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
                               Text(
                                 newBooks[newBookTappedIndex].bookTitle,
                                 style: const TextStyle(
-                                    fontStyle: FontStyle.italic, fontSize: 26),
+                                    fontStyle: FontStyle.italic, fontSize: 22),
                               ),
-                              const Expanded(child: Text("")),
+                              // const Expanded(child: Text("")),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 8.0, bottom: 8.0),
@@ -65,10 +68,12 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
                               Text(
                                 "Category: ${newBooks[newBookTappedIndex].category}",
                                 style: const TextStyle(fontSize: 14),
+                                overflow: TextOverflow.fade,
                               ),
                               Text(
                                 "Source Library: ${newBooks[newBookTappedIndex].sourceLibrary}",
                                 style: const TextStyle(fontSize: 14),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
@@ -79,9 +84,17 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
                 ),
               ),
               // Description Section
+              const Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Text("Description",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.blue))),
               Container(
                 padding: const EdgeInsets.all(10),
-                child: Text(newBooks[newBookTappedIndex].description),
+                child: Text(
+                  newBooks[newBookTappedIndex].description,
+                  style: const TextStyle(overflow: TextOverflow.fade),
+                ),
               ),
 
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -94,7 +107,7 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(Icons.bookmark_add),
-                      Text("Launch Book"),
+                      Text("Add to Library"),
                     ],
                   ),
                   onPressed: () {},
@@ -118,6 +131,7 @@ class AboutPopularBookScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[200],
+        foregroundColor: Colors.black,
         title: const Text("About book"),
         elevation: 0,
       ),
@@ -126,6 +140,7 @@ class AboutPopularBookScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: double.infinity,
@@ -135,7 +150,7 @@ class AboutPopularBookScreen extends StatelessWidget {
                     // Row for book details
                     children: [
                       Container(
-                        width: 180,
+                        width: 150,
                         height: 200,
                         decoration: BoxDecoration(
                             image: DecorationImage(
@@ -154,9 +169,9 @@ class AboutPopularBookScreen extends StatelessWidget {
                               Text(
                                 newBooks[newBookTappedIndex].bookTitle,
                                 style: const TextStyle(
-                                    fontStyle: FontStyle.italic, fontSize: 26),
+                                    fontStyle: FontStyle.italic, fontSize: 22),
                               ),
-                              const Expanded(child: Text("")),
+                              // const Expanded(child: Text("")),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 8.0, bottom: 8.0),
@@ -183,6 +198,11 @@ class AboutPopularBookScreen extends StatelessWidget {
                 ),
               ),
               // Description Section
+              const Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Text("Description",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.blue))),
               Container(
                 padding: const EdgeInsets.all(10),
                 child: Text(popularBooks[popBookTappedIndex].description),
@@ -198,7 +218,7 @@ class AboutPopularBookScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(Icons.bookmark_add),
-                      Text("Launch Book"),
+                      Text("Add to Library"),
                     ],
                   ),
                   onPressed: () {},
