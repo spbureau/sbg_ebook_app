@@ -19,7 +19,7 @@ void main() {
       '/home': (context) => const BookFinder(),
       '/AboutNewBook': (context) => const AboutNewBookScreen(),
       '/AboutPopularBook': (context) => const AboutPopularBookScreen(),
-      '/AllRecommendedScreen': (context) => const AllRecommended()
+      '/AllBooks': (context) => const AllBooks()
     },
     debugShowCheckedModeBanner: false,
   ));

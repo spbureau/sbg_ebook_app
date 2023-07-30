@@ -1,8 +1,11 @@
 // Finder HomePage
 // Simon S. Peters @2023
 // import 'dart:async';
+import 'dart:io';
+
 import 'package:bookfinder/ui/books.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -150,22 +153,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(5.0),
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Recommended For You",
+                        Text("Recommended For You",
                             style: TextStyle(fontSize: 20)),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, '/AllRecommendedScreen');
-                            },
-                            child: const Text("See all")),
+                        // TextButton(
+                        //     onPressed: () {
+                        //       Navigator.pushNamed(
+                        //           context, '/AllRecommendedScreen');
+                        //     },
+                        //     child: const Text("See all")),
                       ],
                     ),
 
                     // First recommdended book ends
-                    recommededBookBox(recommendedBooks[14]),
+
                     recommededBookBox(recommendedBooks[0]),
                     recommededBookBox(recommendedBooks[1]),
                     recommededBookBox(recommendedBooks[2]),
@@ -180,6 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     recommededBookBox(recommendedBooks[11]),
                     recommededBookBox(recommendedBooks[12]),
                     recommededBookBox(recommendedBooks[13]),
+                    recommededBookBox(recommendedBooks[14]),
                   ],
                 ),
               ),
@@ -442,10 +446,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Row(
                                                       children: [
                                                         Expanded(
-                                                          child: ElevatedButton(
-                                                              child: Text(
-                                                                  "Get now at ${recommendedBooks.sourceLibrary}"),
-                                                              onPressed: () {}),
+                                                          child: Link(
+                                                              uri: Uri.parse(
+                                                                  recommendedBooks
+                                                                      .sourceUrl),
+                                                              builder: (BuildContext
+                                                                      context,
+                                                                  followLink) {
+                                                                return ElevatedButton(
+                                                                    child: Text(
+                                                                        "Get now at ${recommendedBooks.sourceLibrary}"),
+                                                                    onPressed:
+                                                                        () {
+                                                                      followLink;
+                                                                    });
+                                                              }),
                                                         ),
                                                       ],
                                                     ),

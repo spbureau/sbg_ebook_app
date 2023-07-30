@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:bookfinder/ui/books.dart';
+// import 'package:bookfinder/ui/books.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,13 +49,19 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     var response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      dynamic searchResult = jsonDecode(response.body);
+      List searchResult = jsonDecode(response.body) as List;
       debugPrint(response.body); //11
+
       for (var book in searchResult) {
         //11
         myBooks.add(GBook.fromJson(book)); //11
         debugPrint("Got some response! Adding...");
       }
+      // searchResult.forEach((element) {
+      //   Map obj = element; //33
+      //   String title = obj['items']['volumeinfo']['title'];
+      //   debugPrint(title);
+      // });
       debugPrint("Done parsing and returned as below");
       // return myBooks;
       // return searchResult.map((e) => GBook.fromJson(e)).toList(); // 22
@@ -75,22 +81,21 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     return myBooks;
   }
 
-/*
   List<GBook> responseToString(List<dynamic> searchResult) {
     List<GBook> parsedBooks = [];
     for (var book in searchResult) {
       debugPrint("About parsing them to GoogleBooks and myBooks");
 
       parsedBooks.add(GBook(
-        book['item']['volumeInfo']
-            ['title'], // parsing the responseData as argument to the book
-        book['item']['volumeInfo']['authors'][0],
+        book['item']['volumeInfo']['title']
+            as String, // parsing the responseData as argument to the book
+        book['item']['volumeInfo']['authors'][0] as String,
         book['item']['volumeInfo']['description'] ?? "No Description avalable",
-        book['item']['volumeInfo']['imageLinks']['thumbnail'],
+        book['item']['volumeInfo']['imageLinks']['thumbnail'] as String,
       ));
 
       // ##
-      var volumeInfo = book['volumeInfo'];
+      Map volumeInfo = book['volumeInfo'];
       String title = volumeInfo['title'] ?? "No title";
       String author = (volumeInfo['authors'] as List<dynamic>).isNotEmpty
           ? volumeInfo['authors'][0]
@@ -110,7 +115,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     }
     return parsedBooks;
   }
-  */
 
   @override
   @override
