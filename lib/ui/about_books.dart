@@ -315,7 +315,7 @@ class _AboutAllBooksScreenState extends State<AboutAllBooksScreen> {
           children: [
             SizedBox(
               width: double.infinity,
-              height: 240,
+              height: 245,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -358,11 +358,11 @@ class _AboutAllBooksScreenState extends State<AboutAllBooksScreen> {
                             Text(
                               "Category: ${allBooks[allBookTappedIndex].category}",
                               style: const TextStyle(fontSize: 14),
-                              overflow: TextOverflow.fade,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               "Source Library: ${allBooks[allBookTappedIndex].sourceLibrary}",
-                              style: const TextStyle(fontSize: 14),
+                              style: const TextStyle(fontSize: 12),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],

@@ -33,8 +33,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           .where((book) =>
               book.bookTitle.contains(keyword) ||
               book.author.contains(keyword) ||
-              book.category.contains(keyword) ||
-              book.description.contains(keyword))
+              book.category.contains(keyword))
           .toList();
     }
     setState(() {
@@ -82,25 +81,30 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      viewBooks = allBooks;
-                      searchTermController.clear();
-                    });
-                  },
-                  child: const Text("Reset all"),
-                ),
-              ),
             ],
           ),
           // #3
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child:
-                Text("Filter view by search", style: TextStyle(fontSize: 20)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Filter view by search",
+                    style: TextStyle(fontSize: 20)),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        viewBooks = allBooks;
+                        searchTermController.clear();
+                      });
+                    },
+                    child: const Text("Reset all"),
+                  ),
+                ),
+              ],
+            ),
           ),
           // #4
           SingleChildScrollView(
@@ -135,7 +139,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ),
             ),
             title: Text(viewBooks[index].bookTitle),
-            subtitle: Text(viewBooks[index].author),
+            subtitle: Text(
+              viewBooks[index].author,
+              overflow: TextOverflow.ellipsis,
+            ),
             isThreeLine: true,
             onTap: () {
               allBookTappedIndex = index;

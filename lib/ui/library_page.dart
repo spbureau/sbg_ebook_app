@@ -165,8 +165,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     fit: BoxFit.cover),
               ),
             ),
-            title: Text(savedBooks[index].bookTitle),
-            subtitle: Text(savedBooks[index].author),
+            title: Text(
+              savedBooks[index].bookTitle,
+              overflow: TextOverflow.ellipsis,
+            ),
+            subtitle: Text(
+              savedBooks[index].author,
+              overflow: TextOverflow.ellipsis,
+            ),
             trailing: IconButton(
               onPressed: () {
                 setState(() {
