@@ -1,6 +1,6 @@
 import 'package:bookfinder/ui/discover_page.dart';
 import 'package:bookfinder/ui/home_page.dart';
-import 'package:bookfinder/ui/library.dart';
+import 'package:bookfinder/ui/library_page.dart';
 import 'package:flutter/material.dart';
 
 class BookFinder extends StatefulWidget {

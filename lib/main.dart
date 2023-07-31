@@ -17,9 +17,9 @@ void main() {
     // initialRoute: '/',
     routes: {
       '/home': (context) => const BookFinder(),
-      '/AboutNewBook': (context) => const AboutNewBookScreen(),
-      '/AboutPopularBook': (context) => const AboutPopularBookScreen(),
-      '/AllBooks': (context) => const AllBooks()
+      '/aboutNewBook': (context) => const AboutNewBookScreen(),
+      '/aboutPopularBook': (context) => const AboutPopularBookScreen(),
+      '/aboutAllBooks': (context) => const AboutAllBooksScreen()
     },
     debugShowCheckedModeBanner: false,
   ));

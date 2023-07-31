@@ -1,7 +1,7 @@
 // Finder HomePage
 // Simon S. Peters @2023
 // import 'dart:async';
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:bookfinder/ui/books.dart';
 import 'package:flutter/material.dart';
@@ -76,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: const Text("See all")),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            // const SizedBox(
+            //   height: 10,
+            // ),
 
             // PopularBooks Row with ListView
             SizedBox(
@@ -105,9 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextButton(onPressed: () {}, child: const Text("See more")),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            // const SizedBox( // for space between header and books list
+            //   height: 10,
+            // ),
             // NewBooks with ListView.builder method
             SizedBox(
               height: 300,
@@ -115,45 +115,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ), //NewBooks Ends
 
             // Recommended Books Section Header
-            /*
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Recommended For You",
-                        style: TextStyle(fontSize: 20)),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/AllRecommendedScreen');
-                        },
-                        child: const Text("See all")),
-                  ],
-                ),
-              ),
-              // Recommdended Books
-              // SizedBox(
-              //   child: recommededBookBox(),
-              // ), // former recBook ListView.builder method list
-
-              // Recommended Books
-              
-
-              // recommededBookBox(recommendedBooks[0]),
-              // recommededBookBox(recommendedBooks[1]),
-              // recommededBookBox(recommendedBooks[2]),
-              // recommededBookBox(recommendedBooks[3]),
-              // recommededBookBox(recommendedBooks[5]),
-            ]),
-            */
-
             SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  children: [
-                    const Row(
+              child: Column(
+                children: [
+                  // Recommended Books Section Header
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Recommended For You",
@@ -166,26 +134,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         //     child: const Text("See all")),
                       ],
                     ),
+                  ),
 
-                    // First recommdended book ends
-
-                    recommededBookBox(recommendedBooks[0]),
-                    recommededBookBox(recommendedBooks[1]),
-                    recommededBookBox(recommendedBooks[2]),
-                    recommededBookBox(recommendedBooks[3]),
-                    recommededBookBox(recommendedBooks[5]),
-                    recommededBookBox(recommendedBooks[4]),
-                    recommededBookBox(recommendedBooks[6]),
-                    recommededBookBox(recommendedBooks[7]),
-                    recommededBookBox(recommendedBooks[8]),
-                    recommededBookBox(recommendedBooks[9]),
-                    recommededBookBox(recommendedBooks[10]),
-                    recommededBookBox(recommendedBooks[11]),
-                    recommededBookBox(recommendedBooks[12]),
-                    recommededBookBox(recommendedBooks[13]),
-                    recommededBookBox(recommendedBooks[14]),
-                  ],
-                ),
+                  // Recommdended books list below:
+                  recommendedBookBox(recommendedBooks[0]),
+                  recommendedBookBox(recommendedBooks[1]),
+                  recommendedBookBox(recommendedBooks[2]),
+                  recommendedBookBox(recommendedBooks[3]),
+                  recommendedBookBox(recommendedBooks[5]),
+                  recommendedBookBox(recommendedBooks[4]),
+                  recommendedBookBox(recommendedBooks[6]),
+                  recommendedBookBox(recommendedBooks[7]),
+                  recommendedBookBox(recommendedBooks[8]),
+                  recommendedBookBox(recommendedBooks[9]),
+                  recommendedBookBox(recommendedBooks[10]),
+                  recommendedBookBox(recommendedBooks[11]),
+                  recommendedBookBox(recommendedBooks[12]),
+                  recommendedBookBox(recommendedBooks[13]),
+                  recommendedBookBox(recommendedBooks[14]),
+                ],
               ),
             ),
           ],
@@ -196,6 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   // Main HomeScreen widget build ends
 
+  // /////////////////////////////////
   // METHODS AND WIDGET BUILDERS BELOW
 
   // Popular Books Box widget build method
@@ -206,12 +174,12 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: popularBooks.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(8.0),
             width: 180,
             child: GestureDetector(
               onTap: () {
                 popBookTappedIndex = index;
-                Navigator.pushNamed(context, '/AboutPopularBook');
+                Navigator.pushNamed(context, '/aboutPopularBook');
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -248,12 +216,12 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: newBooks.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            padding: const EdgeInsets.all(15.0),
-            width: 160,
+            padding: const EdgeInsets.all(8.0),
+            width: 180,
             child: GestureDetector(
               onTap: () {
                 newBookTappedIndex = index;
-                Navigator.pushNamed(context, '/AboutNewBook');
+                Navigator.pushNamed(context, '/aboutNewBook');
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -284,211 +252,224 @@ class _HomeScreenState extends State<HomeScreen> {
   } // NewBooks Box method ends
 
   // Recommended Book Box
-  Widget recommededBookBox(Book recommendedBooks) {
+  Widget recommendedBookBox(Book recommendedBooks) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-      child: Expanded(
-        child: SizedBox(
-          // width: double.infinity,
-          height: 200,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                // Image Container
-                width: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                      image: NetworkImage(recommendedBooks.bookCover),
-                      fit: BoxFit.cover),
-                ),
+      child: SizedBox(
+        // width: double.infinity,
+        height: 200,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              // Image Container for BookCover
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: DecorationImage(
+                    image: NetworkImage(recommendedBooks.bookCover),
+                    fit: BoxFit.cover),
               ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(recommendedBooks.bookTitle,
-                          style: const TextStyle(
-                              fontSize: 14.0, fontStyle: FontStyle.normal)),
-                      Text(
-                          "Author(s): ${recommendedBooks.author} (${recommendedBooks.yearPublished})"),
-                      Text(
-                        "Category: ${recommendedBooks.category}",
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Flexible(
-                          child: Text(recommendedBooks.description,
-                              style:
-                                  const TextStyle(fontStyle: FontStyle.italic),
-                              overflow: TextOverflow.ellipsis)),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: TextButton(
-                                  // BottomSheetFunction and Widget
-                                  onPressed: () {
-                                    showModalBottomSheet(
-                                        context: context,
-                                        isDismissible: true,
-                                        // isScrollControlled: true,
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(16)),
-                                        ),
-                                        builder: (BuildContext context) {
-                                          return SingleChildScrollView(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Row(
-                                                        // First Column item for bottonSheet title
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          const Text(
-                                                              "Book Information",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .blue)),
-                                                          IconButton(
-                                                              onPressed: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                              icon: const Icon(
-                                                                  Icons.clear))
-                                                        ]), // Title ends
-                                                    // About Book Row for Cover, Title, Author
-                                                    Row(children: [
-                                                      Container(
-                                                        // Image Container
-                                                        width: 150,
-                                                        height: 150,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.0),
-                                                          image: DecorationImage(
-                                                              image: NetworkImage(
-                                                                  recommendedBooks
-                                                                      .bookCover),
-                                                              fit:
-                                                                  BoxFit.cover),
-                                                        ),
-                                                      ),
-                                                      // About Column: Title, Author, Category
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        8.0),
-                                                                child: Text(
-                                                                    "Title: ${recommendedBooks.bookTitle}"),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        8.0),
-                                                                child: Text(
-                                                                    "Author(s): ${recommendedBooks.author}"),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        8.0),
-                                                                child: Text(
-                                                                    "Category: ${recommendedBooks.category}"),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ]),
-                                                    // Book Description Row
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                          recommendedBooks
-                                                              .description),
-                                                    ),
-                                                    Row(
+            ),
+            // Books Information
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(recommendedBooks.bookTitle,
+                        style: const TextStyle(
+                            fontSize: 14.0, fontStyle: FontStyle.normal)),
+                    Text(
+                        "Author(s): ${recommendedBooks.author} (${recommendedBooks.yearPublished})"),
+                    Text(
+                      "Category: ${recommendedBooks.category}",
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Flexible(
+                        child: Text(recommendedBooks.description,
+                            style: const TextStyle(fontStyle: FontStyle.italic),
+                            overflow: TextOverflow.ellipsis)),
+                    // Box Buttons Row
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: TextButton(
+                                //child: Text("View Details"),
+                                // BottomSheetFunction and Widget
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      isDismissible: true,
+                                      // isScrollControlled: true,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(16)),
+                                      ),
+                                      builder: (BuildContext context) {
+                                        return SingleChildScrollView(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Row(
+                                                      // First Column item for bottonSheet title
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
-                                                        Expanded(
-                                                          child: Link(
-                                                              uri: Uri.parse(
-                                                                  recommendedBooks
-                                                                      .sourceUrl),
-                                                              builder: (BuildContext
-                                                                      context,
-                                                                  followLink) {
-                                                                return ElevatedButton(
-                                                                    child: Text(
-                                                                        "Get now at ${recommendedBooks.sourceLibrary}"),
-                                                                    onPressed:
-                                                                        () {
-                                                                      followLink;
-                                                                    });
-                                                              }),
+                                                        const Text(
+                                                            "Book Information",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue)),
+                                                        IconButton(
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            icon: const Icon(
+                                                                Icons.clear))
+                                                      ]), // Title ends
+                                                  // About Book Row for Cover, Title, Author
+                                                  Row(children: [
+                                                    Container(
+                                                      // Image Container
+                                                      width: 150,
+                                                      height: 150,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
+                                                        image: DecorationImage(
+                                                            image: NetworkImage(
+                                                                recommendedBooks
+                                                                    .bookCover),
+                                                            fit: BoxFit.cover),
+                                                      ),
+                                                    ),
+                                                    // About Column: Title, Author, Category
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Text(
+                                                                  "Title: ${recommendedBooks.bookTitle}"),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Text(
+                                                                  "Author(s): ${recommendedBooks.author}"),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Text(
+                                                                  "Category: ${recommendedBooks.category}"),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
                                                   ]),
-                                            ),
-                                          );
-                                        });
-                                  }, // Botton sheet for Details onpressed Ends
-                                  child: const Text("View Details")),
-                            ),
-                            Expanded(
-                              child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Get on ${recommendedBooks.sourceLibrary}",
-                                    overflow: TextOverflow.ellipsis,
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+                                                  // Book Description Row
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Text(recommendedBooks
+                                                        .description),
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      // #1 Linked
+                                                      Link(
+                                                          uri: Uri.parse(
+                                                              recommendedBooks
+                                                                  .sourceUrl),
+                                                          builder: (BuildContext
+                                                                  context,
+                                                              followLink) {
+                                                            return ElevatedButton(
+                                                                child: Text(
+                                                                    "Get now at ${recommendedBooks.sourceLibrary}"),
+                                                                onPressed: () {
+                                                                  followLink;
+                                                                });
+                                                          }),
+                                                      ElevatedButton(
+                                                        child: const Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceAround,
+                                                          children: [
+                                                            Icon(Icons
+                                                                .bookmark_add),
+                                                            Text(
+                                                                "Add to Library"),
+                                                          ],
+                                                        ),
+                                                        onPressed: () {
+                                                          savedBooks.add(
+                                                              recommendedBooks);
+                                                          debugPrint(
+                                                              "Added to saved books");
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ]),
+                                          ),
+                                        );
+                                      });
+                                }, // Botton sheet for Details onpressed Ends
+                                child: const Text("View Details")),
+                          ), // Book Details item ends
+                          // Get Book Button
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Get on ${recommendedBooks.sourceLibrary}",
+                                  overflow: TextOverflow.ellipsis,
+                                )),
+                          ),
+                        ],
+                      ), // Row for #ViewDetails, #GetBook Buttons ends
+                    ), // inside an expanded
+                  ],
+                ), // Column for book information ends
+              ),
+            )
+          ],
+        ), // Row for BookCover Container and Details ends
       ),
     );
   } // RecommendedBookBox ends

@@ -5,6 +5,7 @@
 
 int popBookTappedIndex = 0;
 int newBookTappedIndex = 0;
+int allBookTappedIndex = 0;
 
 class Book {
   String bookTitle;
@@ -345,7 +346,9 @@ List<Book> recommendedBooks = [
       "Google")
 ];
 
-List<Book> savedBooks = [...otherBooks];
+List<Book> savedBooks = [
+  // ...otherBooks
+];
 // OTHER BOOKS
 List<Book> otherBooks = [
   Book(
@@ -402,6 +405,7 @@ List<Book> allBooks = [
   ...recommendedBooks,
   ...otherBooks
 ];
+
 
   // allBooks.addAll(popularBooks);
   // allBooks.addAll(recommendedBooks);
