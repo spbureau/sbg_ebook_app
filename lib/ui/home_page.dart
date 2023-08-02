@@ -392,7 +392,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                         color: Colors.cyan[
                                                                             900],
                                                                         fontSize:
-                                                                            16)),
+                                                                            18)),
                                                               ),
                                                               Padding(
                                                                 padding:
@@ -439,12 +439,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                         context,
                                                                     followLink) {
                                                               return ElevatedButton(
-                                                                  child: Text(
-                                                                      "Get now at ${recommendedBooks.sourceLibrary}"),
-                                                                  onPressed:
-                                                                      () {
-                                                                    followLink;
-                                                                  });
+                                                                onPressed:
+                                                                    followLink,
+                                                                child: const Text(
+                                                                    "Get Now"),
+                                                              );
                                                             }),
                                                         ElevatedButton(
                                                           child: const Row(
@@ -481,13 +480,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           // Get Book Button
                           Expanded(
                             flex: 2,
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  "Get Now",
-                                  // "Get on ${recommendedBooks.sourceLibrary}",
-                                  overflow: TextOverflow.ellipsis,
-                                )),
+                            child: Link(
+                                uri: Uri.parse(recommendedBooks.sourceUrl),
+                                builder: (BuildContext context, followLink) {
+                                  return ElevatedButton(
+                                      onPressed: followLink,
+                                      child: const Text(
+                                        "Get Now",
+                                        // "Get on ${recommendedBooks.sourceLibrary}",
+                                        overflow: TextOverflow.ellipsis,
+                                      ));
+                                }),
                           ),
                         ],
                       ), // Row for #ViewDetails, #GetBook Buttons ends

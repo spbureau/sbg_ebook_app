@@ -24,7 +24,7 @@ class _BookFinderState extends State<BookFinder> {
       appBar: AppBar(
         // backgroundColor: Colors.grey,
         elevation: 0,
-        title: const Text("SBG Finder"),
+        title: const Text("Book Finder"),
         actions: [
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.notifications_active))

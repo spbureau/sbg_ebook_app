@@ -45,7 +45,7 @@ List<Book> popularBooks = [
       "Christian, Inspirational",
       "https://m.media-amazon.com/images/I/41KJSQQbEkL._SX326_BO1,204,203,200_.jpg",
       "#1 New York Times bestselling author Joyce Meyer points out, \"You can't give away something you don't have!\"\nMany people who are trying to walk in God's love are doing so in their own strength, but they can't demonstrate God's love because they never stop to receive it themselves. Because God is love, loving and being loved is what makes life worth living. Once you learn how to truly accept God's unconditional love for you and walk in love like Jesus did, you will discover the sweet peace, deep joy, and unfailing strength that come with being willing to say, REDUCE ME TO LOVE!",
-      "https://books.google.de/books?id=zRk3AQAAQBAJ&printsec=frontcover&dq=reduce+me+to+love&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwj498OUoKyAAxVr2AIHHZUyC_UQ6AF6BAgLEAI",
+      "https://drive.google.com/file/d/137vtHGjmfi2TItbKV3gBGH37_p_sIbRf/view?usp=drive_link",
       "Google Books"),
   Book(
       "Your Best Life Begins Each Morning: Devotions to Start Every Day of the Year (Faithwords)",
@@ -63,7 +63,7 @@ List<Book> popularBooks = [
       "Life, Inspirational",
       "https://m.media-amazon.com/images/I/41NiF7MwV5L._SX322_BO1,204,203,200_.jpg",
       "Life is hard--for everyone. No matter how blessed or fortunate you might be, there is a level of difficulty to your life: hard classes, jobs, relationships, and losses. But by following seven basic life disciplines, anyone can experience accomplishment, freedom, and ease in navigating through life's daily challenges.\nIn this positive, insightful book, veteran pastor Bob Merritt describes a set of universal principles that can work for everyone in every stage of life, showing that what you do today determines who you become tomorrow.\nThe life disciplines in this book will lead readers away from failure and regret to accomplishment and ease--not easy, but ease in getting 'out of the boat' and on with navigating through life's daily challenges.&quot;--John Ortberg, author, The Me I Want to Be.\nHere's your breakthrough--insightful, practical, biblical wisdom that can turn your life around!--Lee Strobel, author, The Case for the Real Jesus",
-      "https://books.google.de/books?id=hen2eIW6C4sC&pg=PT10&dq=7+simple+choices&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjX5eGwnKyAAxWlh_0HHex1ALgQ6AF6BAgGEAI",
+      "https://drive.google.com/file/d/11Ts8-40DZ08jXLS-YSBp_mP1MtjXYitO/view?usp=drive_link",
       "Google Books"),
   Book(
       "Act Like a Success, Think Like a Success: Discovering Your Gift and the Way to Life's Riches",
@@ -72,7 +72,7 @@ List<Book> popularBooks = [
       "Personal Transformation, Inspirational",
       "https://m.media-amazon.com/images/I/51h8vuMPGLL._SX330_BO1,204,203,200_.jpg",
       "In his phenomenal #1 New York Times bestseller Act Like a Lady, Think Like a Man, Steve Harvey told women what it takes to succeed in love. Now, he tells everyone how to succeed in life, giving you the keys to fulfill your purpose. Countless books on success tell you what you need to get that you don’t already possess. \nIn Act Like a Success, Think Like a Success, Steve Harvey tells you how to achieve your dreams using the gift you already have. Every one of us was born with a gift endowed by our creator—something you do the best at with very little effort. While it can be like someone else’s, your gift is yours alone. No one can take it away. You are the only one who can use it—or waste it.\nSteve shows how that gift holds your greatest chance at success, and the fulfillment of your life’s mission and purpose.",
-      "https://books.google.de/books?id=TOhzAwAAQBAJ&printsec=frontcover&dq=act+and+think+like+a+success&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwjat6_joayAAxX3wAIHHawtCVsQ6AF6BAgJEAI",
+      "https://drive.google.com/file/d/15C_BjeuBo_kXVe0B0hgydnpvhz-RirOo/view?usp=drive_link",
       "Google"),
   Book(
       "As a Man Thinketh",
@@ -81,7 +81,7 @@ List<Book> popularBooks = [
       "Practical and Motivational Self-help",
       "https://m.media-amazon.com/images/I/410b9T769dL._SX331_BO1,204,203,200_.jpg",
       "As a Man Thinketh is a literary essay and book by James Allen, published in 1903. It was described by Allen as ... [dealing] with the power of thought, and particularly with the use and application of thought to happy and beautiful issues.\n\nI have tried to make the book simple, so that all can easily grasp and follow its teaching, and put into practice the methods which it advises. It shows how, in his own thought---world, each man holds the key to every condition, good or bad, that enters into his life, and that, by working patiently and intelligently upon his thoughts, he may remake his life, and transform his circumstances. \n\nThe price of the book is only one shilling, and it can be carried in the pocket. It was also described by Allen as \"A book that will help you to help yourself\", \"A pocket companion for thoughtful people\", and \"A book on the power and right application of thought.\"",
-      "https://books.google.de/books?id=Ov4qEAAAQBAJ&printsec=frontcover&dq=as+a+man+thinketh+by+james+allen&hl=en&newbks=1&newbks_redir=1&sa=X&ved=2ahUKEwigjL7Ho6yAAxWfywIHHQA0BacQ6AF6BAgLEAI",
+      "https://drive.google.com/file/d/134yHm-DbxL-D7GC1eCfZU-c657nh99G7/view?usp=drive_link",
       "Google"),
   Book(
       "His Needs, Her Needs: Building An Affair-Proof Marriage",

@@ -101,11 +101,8 @@ class AboutPopularBookScreenState extends State<AboutPopularBookScreen> {
                   target: LinkTarget.self,
                   builder: (BuildContext context, followLink) {
                     return ElevatedButton(
-                      child: const Text("Launch Book"),
-                      onPressed: () {
-                        followLink;
-                      },
-                    );
+                        onPressed: followLink,
+                        child: const Text("Launch Book"));
                   }),
               ElevatedButton(
                 child: const Row(
@@ -233,11 +230,7 @@ class _AboutNewBookScreenState extends State<AboutNewBookScreen> {
                 uri: Uri.parse(newBooks[newBookTappedIndex].sourceUrl),
                 builder: (BuildContext context, followLink) {
                   return ElevatedButton(
-                    child: const Text("Launch Book"),
-                    onPressed: () {
-                      followLink;
-                    },
-                  );
+                      onPressed: followLink, child: const Text("Launch Book"));
                 },
               ),
               ElevatedButton(
@@ -394,11 +387,8 @@ class _AboutAllBooksScreenState extends State<AboutAllBooksScreen> {
                   uri: Uri.parse(allBooks[allBookTappedIndex].sourceUrl),
                   builder: (BuildContext context, followLink) {
                     return ElevatedButton(
-                      child: const Text("Launch Book"),
-                      onPressed: () {
-                        followLink;
-                      },
-                    );
+                        onPressed: followLink,
+                        child: const Text("Launch Book"));
                   },
                 ),
                 ElevatedButton(
